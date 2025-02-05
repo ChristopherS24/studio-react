@@ -1,19 +1,20 @@
 import './Navbar.css';
+import Link from './Link';
 
 function Navbar(){
     return (
         <ul>
             <li>
-                <a href="#">Hola</a>
+                <Link>Hola</Link>
             </li>
             <li>
-                <a href="#">Hola</a>
+                <Link>Chi siamo</Link>
             </li>
             <li>
-                <a href="#">Hola</a>
+                <Link>Contatti</Link>
             </li>
             <li>
-                <a href="#">Hola</a>
+                <Link>Dove trovarci</Link>
             </li>
         </ul>
     );
