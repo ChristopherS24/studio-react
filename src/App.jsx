@@ -11,11 +11,16 @@ function App() {
 
   return (
     <>
-    <Navbar></Navbar>
-    <Card></Card>
-    <Card></Card>
-    <Card></Card>
+    <div>
+      <Navbar></Navbar>
+    </div>
     
+    <div className='flex flex-row gap-7'>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+    </div>
+
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -33,9 +38,6 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
