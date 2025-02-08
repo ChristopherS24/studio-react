@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import "./components/Navbar"
-import Navbar from './components/Navbar'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import "./components/Navbar";
+import Navbar from './components/Navbar';
+import Card from './components/Card';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,6 +12,10 @@ function App() {
   return (
     <>
     <Navbar></Navbar>
+    <Card></Card>
+    <Card></Card>
+    <Card></Card>
+    
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
