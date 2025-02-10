@@ -1,7 +1,8 @@
-function Card(props){
-    const title = props.title;
+// function Card({ title, imgURL, children })
+function Card({ title, imgURL }) {
+    // const title = props.title;
     const description = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
-    const imgURL = props.imgURL
+    // const imgURL = props.imgURL
     return (
         <div className="rounded-md bg-zinc-950">
             <img src={imgURL} alt=""></img>
@@ -12,6 +13,7 @@ function Card(props){
                 <p className="text-white">
                     {description}
                 </p>
+                {/* <p className="text-white"> {children} </p> */}
             </div>
         </div>
     )

@@ -19,7 +19,7 @@ function App() {
       <Card
         title="Tokyo"
         imgURL="https://images.unsplash.com/photo-1738975927070-d5af82de67c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ></Card>
+      >Lorem ipsum dolor prova con children amet consectetur adipisicing elit. Assumenda tempore impedit ipsa quas veniam officiis eaque laboriosam modi! Repellat at ipsum?</Card>
       <Card 
         title="New York"
         imgURL="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
