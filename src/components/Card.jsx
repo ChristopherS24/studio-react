@@ -1,8 +1,9 @@
 // function Card({ title, imgURL, children })
-function Card({ title, imgURL }) {
+function Card({ title, imgURL, isVisited }) {
     // const title = props.title;
     const description = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
     // const imgURL = props.imgURL
+    const visitedLabel = isVisited ? "visitata" : "non visitata";
     return (
         <div className="rounded-md bg-zinc-950">
             <img src={imgURL} alt=""></img>
@@ -13,7 +14,11 @@ function Card({ title, imgURL }) {
                 <p className="text-white">
                     {description}
                 </p>
-                {/* <p className="text-white"> {children} </p> */}
+                <span> {visitedLabel} </span>
+                {/* {isVisited ? <span>visitata</span> : <span>non visitata</span>} (soluzione alternativa)*/}
+                {/* {isVisited && <span>visitata</span>} (soluzione alternativa con solo una stampa su schermo)*/}
+
+                {/* <p className="text-white"> {children} </p> (soluzione alternativa)*/}
             </div>
         </div>
     )
