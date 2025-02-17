@@ -8,12 +8,12 @@ function Navbar(){
 
     return (
         <>
-        <div className='flex flex-col gap-10'>
+        <div className='flex flex-col gap-10 p-5'>
             <div className={`box rounded ${x < 10 ? "rotated" : ""}`}>x è {x}</div>
             <div className={`bg-blue-500 rounded-lg w-72 h-72  ${y < 10 ? "rotate-45" : "bg-yellow-300"}`}>hola</div>
         </div>
         
-        <div>
+        <div className='flex flex-col p-5'>
             <ul>
                 <li>
                     <Link>Hola</Link>

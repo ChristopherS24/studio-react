@@ -1,7 +1,7 @@
 // function Card({ title, imgURL, children })
-function Card({ title, imgURL, isVisited }) {
+function Card({ title, imgURL, isVisited, description }) {
     // const title = props.title;
-    const description = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
+    // const description = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
     // const imgURL = props.imgURL
     const visitedLabel = isVisited ? "visitata" : "non visitata";
     return (
