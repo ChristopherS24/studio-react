@@ -6,6 +6,17 @@ import "./components/Navbar";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 
+function handleClick() {
+  alert("hola!");
+}
+function handleChange(e) {
+  console.log(e.target.value);
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  console.log(e);
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const cities = [
@@ -81,10 +92,15 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <div className="card">
+      <div className="card flex justify-evenly">
         <button className='bg-black' onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={handleClick}>Alert</button>
+        <input type="text"onChange={handleChange} />
+        <form onSubmit={handleSubmit}>
+          <button type='submit'>Invia</button>
+        </form>
       </div>
     </>
   )
