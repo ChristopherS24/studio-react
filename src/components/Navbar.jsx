@@ -13,7 +13,7 @@ function Navbar(){
             <div className={`bg-blue-500 rounded-lg w-72 h-72  ${y < 10 ? "rotate-45" : "bg-yellow-300"}`}>hola</div>
         </div>
         
-        <div className='flex flex-col p-5'>
+        <div className='flex flex-row p-5'>
             <ul>
                 <li>
                     <Link>Hola</Link>
