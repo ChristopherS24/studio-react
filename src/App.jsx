@@ -5,6 +5,7 @@ import './App.css';
 import "./components/Navbar";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
+import CardForm from './components/CardForm';
 
 function handleClick() {
   alert("hola!");
@@ -81,6 +82,10 @@ function App() {
         </Card>
       ))}
     </div>
+
+    <CardForm>
+      
+    </CardForm>
 
       <div className='flex justify-center p-5'>
         <a href="https://vite.dev" target="_blank">
