@@ -20,7 +20,20 @@ function handleSubmit(e) {
 
 function App() {
   const [count, setCount] = useState(0);
-  const cities = [
+  const [items, setItems] = useState([1, 2, 3]);
+  const [user, setUser] = useState({ name: "Marcus", age: 23 });
+
+  const aggiungiItem = () => {
+    const nuovoItem = 4;
+    setItems([...items, nuovoItem]);
+    console.log(items);
+  };
+  const updateUserName = () => {
+    const updatedUser = { ...user, name: "Lucas" };
+    setUser(updatedUser);
+  };
+
+  const [cities, setCities] = useState([
     {
       id: 0,
       name: "Lima",
@@ -42,7 +55,12 @@ function App() {
       imgURL: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       isVisited: true,
     },
-  ];
+  ]);
+
+  const addCity = (city) => {
+    setCities([...cities, city]);
+  };
+
 
   return (
     <>
@@ -83,9 +101,7 @@ function App() {
       ))}
     </div>
 
-    <CardForm>
-      
-    </CardForm>
+    <CardForm addCity={addCity}></CardForm>
 
       <div className='flex justify-center p-5'>
         <a href="https://vite.dev" target="_blank">
