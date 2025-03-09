@@ -1,5 +1,5 @@
 function CardForm({ addCity }) {
-const handleClick = () => {
+const handleSubmit = () => {
     const city = {
         id: 3,
         name: "Bangkok",
@@ -11,12 +11,28 @@ const handleClick = () => {
 };
 
     return (
-        <div className="flex flex-col gap-5 p-5 w-80 mb-10">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <button onClick={handleClick}>Aggiungi Card</button>
-        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-5 w-80 mb-10">
+            {/* è possibile usare handleClick */}
+
+            <div className="flex flex-col p-5">
+                <label>Nome città:</label>
+                <input type="text" name="name"></input>
+            </div>
+            <div className="flex flex-col">
+                <label>Descrizione:</label>
+                <input type="text" name="description"></input>
+            </div>
+            <div className="flex flex-col">
+                <label>Imagine:</label>
+                <input type="text" name="imgURL"></input>
+            </div>
+            <div className="flex flex-col">
+                <label>Visitata?</label>
+                <input type="checkbox" name="isVisited"></input>
+            </div>
+
+            <button type="submit">Aggiungi Card</button>
+        </form>
     );
 }
 
