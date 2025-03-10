@@ -67,6 +67,10 @@ function App() {
     <div>
       <Navbar></Navbar>
     </div>
+
+    <div>
+      <CardForm addCity={addCity}></CardForm>
+    </div>
     
     <div className='grid grid-cols-3 gap-x-10 gap-y-10'>
       <Card
@@ -101,7 +105,8 @@ function App() {
       ))}
     </div>
 
-    <CardForm addCity={addCity}></CardForm>
+
+
 
       <div className='flex justify-center p-5'>
         <a href="https://vite.dev" target="_blank">
@@ -111,6 +116,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      
       <h1>Vite + React</h1>
 
       <div className="card flex justify-evenly">
