@@ -17,7 +17,8 @@ const handleInputChange = (e) => {
     });
 };
 
-const handleSubmit = () => {
+const handleSubmit = (e) => {
+    e.preventDefault();
     const city = {
         id: Math.random(),
         name: formData.name,
@@ -25,6 +26,12 @@ const handleSubmit = () => {
         imgURL: formData.imgURL,
         isVisited: formData.isVisited,
     };
+    setformData({
+        name: "",
+        description: "",
+        imgURL: "",
+        isVisited: false, 
+    });
     addCity(city);
 };
 
