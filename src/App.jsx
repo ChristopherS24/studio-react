@@ -6,6 +6,7 @@ import "./components/Navbar";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import CardForm from './components/CardForm';
+import Example from "./components/Example"
 
 function handleClick() {
   alert("hola!");
@@ -64,6 +65,22 @@ function App() {
 
   return (
     <>
+
+    <Example></Example>
+    <CardForm addCity={addCity}></CardForm>
+    <div className="grid grid-cols-4 gap-5">
+      {cities.map((city) => (
+        <Card
+          key={city.id}
+          title={city.name}
+          isVisited={city.isVisited}
+          imgURL={city.imgURL}
+          description={city.description}>
+          {/* {city.description} */}
+        </Card>
+      ))}
+    </div>
+
     <div>
       <Navbar></Navbar>
     </div>
@@ -74,19 +91,19 @@ function App() {
     
     <div className='grid grid-cols-3 gap-x-10 gap-y-10'>
       <Card
-      isVisited={true}
+        isVisited={true}
         title="Tokyo"
         imgURL="https://images.unsplash.com/photo-1738975927070-d5af82de67c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         description="Lorem ipsum dolor sit, amet adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
       ></Card>
       <Card
-      isVisited={false}
+        isVisited={false}
         title="New York"
         imgURL="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia soluta optio!"
       ></Card>
       <Card
-      isVisited={true}
+        isVisited={true}
         title="Roma"
         imgURL="https://plus.unsplash.com/premium_photo-1675975678457-d70708bf77c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         description="Lorem ipsum dolor sit, amet amon adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
@@ -133,4 +150,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
