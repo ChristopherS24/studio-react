@@ -2,11 +2,19 @@ import { useState, useEffect } from "react";
 
 function Example() {
     const [count, setCount] = useState(0);
+    //const [data, setData] = useState(null);
 
 // Definizione dell'effetto
     useEffect(() => {
         document.title = `Conteggio: ${count}`;
-    }, [count]);
+
+        // fetch('https://jsonplaceholder.typicode.com/posts')
+        // .then((response)=> response.json())
+        // .then((data) => {
+        //     setData(data);
+        //     console.log(data);
+        // });
+    },[count]);
 
     return (
         <div>

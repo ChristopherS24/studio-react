@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -23,6 +23,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [items, setItems] = useState([1, 2, 3]);
   const [user, setUser] = useState({ name: "Marcus", age: 23 });
+  const [data, setData] = useState([]);
 
   const aggiungiItem = () => {
     const nuovoItem = 4;
@@ -33,6 +34,13 @@ function App() {
     const updatedUser = { ...user, name: "Lucas" };
     setUser(updatedUser);
   };
+
+  fetch('https://jsonplaceholder.typicode.com/posts')
+  .then((response)=> response.json())
+  .then((data) => {
+      setData(data);
+      console.log(data);
+  });
 
   const [cities, setCities] = useState([
     {
@@ -68,7 +76,7 @@ function App() {
 
     <Example></Example>
     <CardForm addCity={addCity}></CardForm>
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid grid-cols-4 gap-5 p-5">
       {cities.map((city) => (
         <Card
           key={city.id}
@@ -78,6 +86,16 @@ function App() {
           description={city.description}>
           {/* {city.description} */}
         </Card>
+      ))}
+    </div>
+
+    <div className="grid grid-cols-4 gap-5 p-5">
+      {data.map((item) => (
+        <div key={item.id} className='bg-blue-900 rounded-lg p-5' >
+          <p className='text-red-400 mb-1'>userId: {item.iserId}</p>
+          <h3 className='text-xl mb-3'>{item.title}</h3>
+          <p className='text-black'>{item.body}</p>
+        </div>
       ))}
     </div>
 
