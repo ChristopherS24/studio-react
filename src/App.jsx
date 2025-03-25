@@ -91,8 +91,8 @@ function App() {
 
     <div className="grid grid-cols-4 gap-5 p-5">
       {data.map((item) => (
-        <div key={item.id} className='bg-blue-900 rounded-lg p-5' >
-          <p className='text-red-400 mb-1'>userId: {item.iserId}</p>
+        <div key={item.id} className='bg-green-500 rounded-lg p-5' >
+          <p className='text-red-500 mb-1'>userId: {item.userId}</p>
           <h3 className='text-xl mb-3'>{item.title}</h3>
           <p className='text-black'>{item.body}</p>
         </div>

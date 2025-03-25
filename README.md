@@ -1,1 +1,1 @@
-Studio generale di React e le sue funzionalità (+ Tailwind)
+Studio generale di React e delle sue funzionalità (con uso di Tailwind)
