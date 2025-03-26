@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -19,11 +19,24 @@ function handleSubmit(e) {
   console.log(e);
 }
 
+// utilizzo useReducer
+function formReducer(state, action){
+  switch(action.type) {
+    case "CHANGE_FIELD":
+      return {...state,[action.field]: action.value}
+      case "RESET_FORM":
+        return {name: '', email: ''};
+      default:
+        return state;
+  }
+}
+
 function App() {
   const [count, setCount] = useState(0);
   const [items, setItems] = useState([1, 2, 3]);
   const [user, setUser] = useState({ name: "Marcus", age: 23 });
   const [data, setData] = useState([]);
+  const [formData, dispatchFormData] = useReducer(formReducer, {name: '', email: ''})
 
   const aggiungiItem = () => {
     const nuovoItem = 4;
@@ -35,12 +48,26 @@ function App() {
     setUser(updatedUser);
   };
 
-  fetch('https://jsonplaceholder.typicode.com/posts')
-  .then((response)=> response.json())
-  .then((data) => {
-      setData(data);
-      console.log(data);
-  });
+// utilizzo useReducer
+  const handleFieldChange = (field, value) => {
+    dispatchFormData({type: "CHANGE_FIELD", field, value});
+  };
+  const resetForm = (e) => {
+    e.preventDefault();
+    dispatchFormData({type: "RESET_FORM"});
+  };
+  const sendForm = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+// prova di aggiunta json esterno
+  // fetch('https://jsonplaceholder.typicode.com/posts')
+  // .then((response)=> response.json())
+  // .then((data) => {
+  //     setData(data);
+  //     console.log(data);
+  // });
 
   const [cities, setCities] = useState([
     {
@@ -73,75 +100,102 @@ function App() {
 
   return (
     <>
+      <Example></Example>
+      <CardForm addCity={addCity}></CardForm>
+      <div className="grid grid-cols-4 gap-5 p-5">
+        {cities.map((city) => (
+          <Card
+            key={city.id}
+            title={city.name}
+            isVisited={city.isVisited}
+            imgURL={city.imgURL}
+            description={city.description}>
+            {/* {city.description} */}
+          </Card>
+        ))}
+      </div>
 
-    <Example></Example>
-    <CardForm addCity={addCity}></CardForm>
-    <div className="grid grid-cols-4 gap-5 p-5">
-      {cities.map((city) => (
+{/* utilizzo useReducer */}
+      <form>
+        <div className='flex flex-col gap-3 p-10'>
+          <div>
+            <label htmlFor='name'>Nome:</label>
+              <input
+              type='text'
+              id='name'
+              name='name'
+              value={formData.name}
+              onChange={(e) => handleFieldChange('name', e.target.value)}
+              />
+          </div>
+          <div>
+              <label htmlFor='email'>Email:</label>
+              <input
+              type='email'
+              id='email'
+              name='email'
+              value={formData.email}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
+              />
+          </div>
+          <div className='p-5'>
+            <button onClick={resetForm}>Resetta</button>
+            <button onClick={sendForm}>Invia</button>
+          </div>
+        </div>
+
+      </form>
+
+      <div className="grid grid-cols-4 gap-5 p-5">
+        {data.map((item) => (
+          <div key={item.id} className='bg-green-500 rounded-lg p-5' >
+            <p className='text-red-500 mb-1'>userId: {item.userId}</p>
+            <h3 className='text-xl mb-3'>{item.title}</h3>
+            <p className='text-black'>{item.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <Navbar></Navbar>
+      </div>
+
+      <div>
+        <CardForm addCity={addCity}></CardForm>
+      </div>
+      
+      <div className='grid grid-cols-3 gap-x-10 gap-y-10'>
         <Card
+          isVisited={true}
+          title="Tokyo"
+          imgURL="https://images.unsplash.com/photo-1738975927070-d5af82de67c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          description="Lorem ipsum dolor sit, amet adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
+        ></Card>
+        <Card
+          isVisited={false}
+          title="New York"
+          imgURL="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia soluta optio!"
+        ></Card>
+        <Card
+          isVisited={true}
+          title="Roma"
+          imgURL="https://plus.unsplash.com/premium_photo-1675975678457-d70708bf77c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          description="Lorem ipsum dolor sit, amet amon adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
+        ></Card>
+
+        {cities.map((city) => (
+          <Card
           key={city.id}
           title={city.name}
-          isVisited={city.isVisited}
           imgURL={city.imgURL}
-          description={city.description}>
+          isVisited={city.isVisited}
+          description={city.description}
+          >
           {/* {city.description} */}
-        </Card>
-      ))}
-    </div>
-
-    <div className="grid grid-cols-4 gap-5 p-5">
-      {data.map((item) => (
-        <div key={item.id} className='bg-green-500 rounded-lg p-5' >
-          <p className='text-red-500 mb-1'>userId: {item.userId}</p>
-          <h3 className='text-xl mb-3'>{item.title}</h3>
-          <p className='text-black'>{item.body}</p>
-        </div>
-      ))}
-    </div>
-
-    <div>
-      <Navbar></Navbar>
-    </div>
-
-    <div>
-      <CardForm addCity={addCity}></CardForm>
-    </div>
-    
-    <div className='grid grid-cols-3 gap-x-10 gap-y-10'>
-      <Card
-        isVisited={true}
-        title="Tokyo"
-        imgURL="https://images.unsplash.com/photo-1738975927070-d5af82de67c1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        description="Lorem ipsum dolor sit, amet adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
-      ></Card>
-      <Card
-        isVisited={false}
-        title="New York"
-        imgURL="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, odio quia soluta optio!"
-      ></Card>
-      <Card
-        isVisited={true}
-        title="Roma"
-        imgURL="https://plus.unsplash.com/premium_photo-1675975678457-d70708bf77c8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        description="Lorem ipsum dolor sit, amet amon adipisicing elit. Excepturi, odio quia pariatur quod soluta optio!"
-      ></Card>
-
-      {cities.map((city) => (
-        <Card
-        key={city.id}
-        title={city.name}
-        imgURL={city.imgURL}
-        isVisited={city.isVisited}
-        description={city.description}
-        >
-        {/* {city.description} */}
-        </Card>
-      ))}
-    </div>
-
-
-
+          </Card>
+        ))}
+      </div>
 
       <div className='flex justify-center p-5'>
         <a href="https://vite.dev" target="_blank">
