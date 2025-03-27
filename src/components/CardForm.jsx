@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from "react";
+import { ProvaContext } from "../stores/ProvaContext";
 
 function CardForm({ addCity }) {
 const [formData, setformData] = useState({
@@ -34,6 +35,9 @@ const handleSubmit = (e) => {
     });
     addCity(city);
 };
+
+// aggiunta visulizzazione del context nel form
+const { count } = useContext(ProvaContext);
 
     return (
         <form 
@@ -72,6 +76,11 @@ const handleSubmit = (e) => {
                 name="isVisited"
                 value={formData.isVisited}
                 onChange={handleInputChange}></input>
+            </div>
+            <div className="bg-red-700">
+                <h3>
+                Count { count }
+                </h3>
             </div>
 
             <button className="" type="submit">Aggiungi Card</button>
