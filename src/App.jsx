@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useContext } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -6,7 +6,8 @@ import "./components/Navbar";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import CardForm from './components/CardForm';
-import Example from "./components/Example"
+import Example from "./components/Example";
+import { ProvaContext } from './stores/ProvaContext';
 
 function handleClick() {
   alert("hola!");
@@ -99,8 +100,8 @@ function App() {
 
 
   return (
-    <>
-      <Example></Example>
+    <ProvaContext.Provider value={{ count, setCount }}>
+      <Example cities={cities}></Example>
       <CardForm addCity={addCity}></CardForm>
       <div className="grid grid-cols-4 gap-5 p-5">
         {cities.map((city) => (
@@ -218,7 +219,7 @@ function App() {
           <button type='submit'>Invia</button>
         </form>
       </div>
-    </>
+    </ProvaContext.Provider>
   )
 }
 
