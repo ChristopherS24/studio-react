@@ -9,6 +9,8 @@ import CardForm from './components/CardForm';
 import Example from "./components/Example";
 import { ProvaContext } from './stores/ProvaContext';
 
+import { useSelector } from 'react-redux';
+
 function handleClick() {
   alert("hola!");
 }
@@ -37,7 +39,9 @@ function App() {
   const [items, setItems] = useState([1, 2, 3]);
   const [user, setUser] = useState({ name: "Marcus", age: 23 });
   const [data, setData] = useState([]);
-  const [formData, dispatchFormData] = useReducer(formReducer, {name: '', email: ''})
+  const [formData, dispatchFormData] = useReducer(formReducer, {name: '', email: ''});
+
+  const cities = useSelector((state) => state.cities.value);
 
   const aggiungiItem = () => {
     const nuovoItem = 4;
@@ -70,29 +74,29 @@ function App() {
   //     console.log(data);
   // });
 
-  const [cities, setCities] = useState([
-    {
-      id: 0,
-      name: "Lima",
-      description: "lorem ipsum dolor causa, amet consectetur nova aris?",
-      imgURL: "https://images.lonelyplanetitalia.it/static/places/lima-3437.jpg?q=90&p=2400%7C1350%7Cmax&s=3dc99d33fc99b4388f4cbe5dd0cc1441",
-      isVisited: true,
-    },
-    {
-      id: 1,
-      name: "Varsavia",
-      description: "Lorem ipsum dolor prova con children adipisicing elit. Veniam officiis eaque laboriosam modi!",
-      imgURL: "https://images.unsplash.com/photo-1577133192629-5140c5371590?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      isVisited: false,
-    },
-    {
-      id: 2,
-      name: "Londra",
-      description: "lorem ipsum dolor fish & chips. Repellat at omen ipsum?",
-      imgURL: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      isVisited: true,
-    },
-  ]);
+  // const [cities, setCities] = useState([
+  //   {
+  //     id: 0,
+  //     name: "Lima",
+  //     description: "lorem ipsum dolor causa, amet consectetur nova aris?",
+  //     imgURL: "https://images.lonelyplanetitalia.it/static/places/lima-3437.jpg?q=90&p=2400%7C1350%7Cmax&s=3dc99d33fc99b4388f4cbe5dd0cc1441",
+  //     isVisited: true,
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Varsavia",
+  //     description: "Lorem ipsum dolor prova con children adipisicing elit. Veniam officiis eaque laboriosam modi!",
+  //     imgURL: "https://images.unsplash.com/photo-1577133192629-5140c5371590?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //     isVisited: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Londra",
+  //     description: "lorem ipsum dolor fish & chips. Repellat at omen ipsum?",
+  //     imgURL: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //     isVisited: true,
+  //   },
+  // ]);
 
   const addCity = (city) => {
     setCities([...cities, city]);
@@ -100,21 +104,37 @@ function App() {
 
 
   return (
-    <ProvaContext.Provider value={{ count, setCount }}>
-      <Example cities={cities}></Example>
-      <CardForm addCity={addCity}></CardForm>
-      <div className="grid grid-cols-4 gap-5 p-5">
-        {cities.map((city) => (
-          <Card
-            key={city.id}
-            title={city.name}
-            isVisited={city.isVisited}
-            imgURL={city.imgURL}
-            description={city.description}>
-            {/* {city.description} */}
-          </Card>
-        ))}
-      </div>
+    // <ProvaContext.Provider value={{ count, setCount }}>
+    //   <Example cities={cities}></Example>
+    //   <CardForm addCity={addCity}></CardForm>
+    //   <div className="grid grid-cols-4 gap-5 p-5">
+    //     {cities.map((city) => (
+    //       <Card
+    //         key={city.id}
+    //         title={city.name}
+    //         isVisited={city.isVisited}
+    //         imgURL={city.imgURL}
+    //         description={city.description}>
+    //         {/* {city.description} */}
+    //       </Card>
+    //     ))}
+    //   </div>
+
+    <>
+    <Example></Example>
+    <CardForm></CardForm>
+    <div className="grid grid-cols-4 gap-5 p-5">
+      {cities.map((city) => (
+        <Card
+          key={city.id}
+          title={city.name}
+          isVisited={city.isVisited}
+          imgURL={city.imgURL}
+          description={city.description}>
+          {/* {city.description} */}
+        </Card>
+      ))}
+    </div>
 
 {/* utilizzo useReducer */}
       <form>
@@ -219,7 +239,8 @@ function App() {
           <button type='submit'>Invia</button>
         </form>
       </div>
-    </ProvaContext.Provider>
+    {/* </ProvaContext.Provider> */}
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { counterReducer } from './citiesSlice.js'
-import { citiesReducer } from './counterSlice.js'
+import { counterReducer } from './counterSlice.js'
+import { citiesReducer } from './citiesSlice.js'
 
 export default configureStore({
   reducer: {

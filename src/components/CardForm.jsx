@@ -1,7 +1,13 @@
 import { useState, useContext } from "react";
 import { ProvaContext } from "../stores/ProvaContext";
 
+import { useDispatch } from "react-redux";
+import { add } from "../redux/citiesSlice"; 
+
 function CardForm({ addCity }) {
+    
+const dispatch = useDispatch();
+
 const [formData, setformData] = useState({
     name: "",
     description: "",
@@ -33,7 +39,10 @@ const handleSubmit = (e) => {
         imgURL: "",
         isVisited: false, 
     });
-    addCity(city);
+    // addCity(city);
+
+    dispatch(add(city));
+
 };
 
 // aggiunta visulizzazione del context nel form
