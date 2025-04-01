@@ -28,9 +28,9 @@ function formReducer(state, action){
     case "CHANGE_FIELD":
       return {...state,[action.field]: action.value}
       case "RESET_FORM":
-        return {name: '', email: ''};
+      return {name: '', email: ''};
       default:
-        return state;
+      return state;
   }
 }
 
